@@ -17,5 +17,10 @@ module DataRepository
 
       IO.write(path, data)
     end
+
+    def migrate(source_path, destination_path)
+      data = self.load(source_path)
+      dump(destination_path, yield(data))
+    end
   end
 end
